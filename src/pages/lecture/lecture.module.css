@@ -1,0 +1,70 @@
+.main {
+  display: flex;
+}
+
+.left {
+  flex: 1;
+  /* background-color: green; */
+}
+
+.left .header {
+  background-color: rgb(240, 240, 240);
+  padding: 1.2rem 1rem;
+}
+
+.left .header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.video {
+  background-color: black;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tab.open {
+  background-color: green;
+  color: white;
+}
+
+.right {
+  border-left: 1px solid rgb(184, 184, 184);
+  width: 30%;
+}
+
+.header {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding: 1.2rem 1rem;
+  font-size: 1.2rem;
+}
+
+.lectureList {
+  padding: 1rem 1rem;
+}
+
+.lectureItem {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.lectureItem.selected {
+  background-color: green;
+  color: white;
+}
