@@ -1,0 +1,14 @@
+.user-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.username {
+    font-size: 1em;
+    padding-right: 1em;
+    text-align: center;
+    height: 100%;
+}

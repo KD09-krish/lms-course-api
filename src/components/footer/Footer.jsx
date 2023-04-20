@@ -32,13 +32,13 @@ export default function Footer() {
                 <h2 className="footer-menu-name"> Company</h2>
                 <ul id="menu-company" className="footer-menu-list">
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Contact</a>
+                    <a href="/">Contact</a>
                   </li>
                   <li className="menu-item menu-item-type-taxonomy menu-item-object-category">
-                    <a href="#">News</a>
+                    <a href="/">News</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Careers</a>
+                    <a href="/">Careers</a>
                   </li>
                 </ul>
               </div>
@@ -48,26 +48,26 @@ export default function Footer() {
                 <h2 className="footer-menu-name"> Quick Links</h2>
                 <ul id="menu-quick-links" className="footer-menu-list">
                   <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a target="_blank" rel="noopener noreferrer" href="#">
+                    <a target="_blank" rel="noopener noreferrer" href="/">
                       Support Center
                     </a>
                   </li>
                   <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a target="_blank" rel="noopener noreferrer" href="#">
+                    <a target="_blank" rel="noopener noreferrer" href="/">
                       Service Status
                     </a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Security</a>
+                    <a href="/">Security</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Blog</a>
+                    <a href="/">Blog</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type_archive menu-item-object-customer">
-                    <a href="#">Customers</a>
+                    <a href="/">Customers</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Reviews</a>
+                    <a href="/">Reviews</a>
                   </li>
                 </ul>
               </div>
@@ -77,26 +77,26 @@ export default function Footer() {
                 <h2 className="footer-menu-name"> Quick Links</h2>
                 <ul id="menu-quick-links" className="footer-menu-list">
                   <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a target="_blank" rel="noopener noreferrer" href="#">
+                    <a target="_blank" rel="noopener noreferrer" href="/">
                       Support Center
                     </a>
                   </li>
                   <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a target="_blank" rel="noopener noreferrer" href="#">
+                    <a target="_blank" rel="noopener noreferrer" href="/">
                       Service Status
                     </a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Security</a>
+                    <a href="/">Security</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Blog</a>
+                    <a href="/">Blog</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type_archive menu-item-object-customer">
-                    <a href="#">Customers</a>
+                    <a href="/">Customers</a>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="#">Reviews</a>
+                    <a href="/">Reviews</a>
                   </li>
                 </ul>
               </div>

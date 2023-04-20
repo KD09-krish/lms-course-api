@@ -1,19 +1,20 @@
 // For now This navbar has been used in the whole website page
 // login and signup modal is imported from LoginSignup page and then imported from components part from Login/Signup page
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-// import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
+import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 
 import "./navbar.css";
-// import LoginSignup from "../../pages/login-signupmodal/loginSignup";
+import LoginSignup from "../../pages/login-signupmodal/loginSignup";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
@@ -36,12 +37,12 @@ const Navbar = () => {
                 <Link to="/products">Products</Link>
               </li>
               <li>FAQ</li>
-              {/* {currentUser ? (
+              {currentUser ? (
                 <ProfileDropdown />
-              ) : ( */}
-              <li onClick={() => setIsModalOpen(true)}>Login</li>
-              {/* )} */}
-              {/* {currentUser ? (
+              ) : (
+                <li onClick={() => setIsModalOpen(true)}>Login</li>
+              )}
+              {currentUser ? (
                 ""
               ) : (
                 <li>
@@ -49,13 +50,13 @@ const Navbar = () => {
                     <button className="button1">For Developers</button>
                   </a>
                 </li>
-              )} */}
+              )}
             </ul>
           </div>
         </div>
-        {/* {isModalOpen && (
+        {isModalOpen && (
           <LoginSignup setIsModalOpen={setIsModalOpen} className="pos" />
-        )} */}
+        )}
       </nav>
     </>
   );

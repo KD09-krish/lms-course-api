@@ -18,8 +18,9 @@ const Details = ({ lecture }) => {
         <div className={styles.tab}>
           <SearchIcon />
         </div>
-        {options.map((option) => (
+        {options.map((option, i) => (
           <div
+            key={i}
             className={`${styles.tab} ${
               open === option.name ? styles.open : ""
             }`}
