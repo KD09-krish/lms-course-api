@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 // const URL = process.env.REACT_APP_BACKEND_URL;
-const URL = "http://localhost:3001/";
+const URL = "http://localhost:8080/";
 
 const socket = io(URL, { autoConnect: false });
 

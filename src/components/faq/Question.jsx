@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-const Question = ({ question, className, questionClassName }) => {
+const Question = ({ question, className, questionClassName, onAnswer }) => {
   const [open, setOpen] = useState();
+  const [answer, setAnswer] = useState("");
   const ansRef = useRef();
 
   useEffect(() => {
@@ -50,6 +51,15 @@ const Question = ({ question, className, questionClassName }) => {
             <div className={styles.ansCont}>{ans.answer}</div>
           </div>
         ))}
+        <div className={styles.answer}>
+          <textarea
+            type="text"
+            placeholder="Your Answer ..."
+            value={answer}
+            onClick={(e) => setAnswer(e.target.value)}
+          />
+          <button onClick={() => onAnswer(answer)}>Answer</button>
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Question from "./Question";
 import { UserContext } from "../../context/UserContext";
 import socket, { connect } from "../../utils/socket";
+import axios from "axios";
 
 const Faq = () => {
   const { currentUser } = useContext(UserContext);
@@ -73,6 +74,21 @@ const Faq = () => {
     ]);
   }, []);
 
+  const answerHandler = (answer) => {
+    console.log("Question Answered: " + answer);
+  };
+
+  const newQuesHandler = () => {
+    axios.post("http://localhost:8080/api/doubt", {
+      doubt: {
+        course: "63bc26feda625a2ab6814d92",
+        question: newHeading,
+        lecture: "63bc26fdda625a2ab6814d90",
+      },
+      session: session,
+    });
+  };
+
   useEffect(() => {
     socket.on("connect", () => {
       console.log("connected");
@@ -89,13 +105,15 @@ const Faq = () => {
     });
 
     socket.on("doubt", (doubt) => {
-      console("New Doubt added");
+      console.log("New Doubt added: ", doubt);
     });
 
     if (currentUser) {
       connect(currentUser.username);
     }
   }, [currentUser]);
+
+  // console.log(session);
 
   return (
     <div className={styles.container}>
@@ -113,15 +131,18 @@ const Faq = () => {
       </div>
       <div className={styles.quesList}>
         {questions ? (
-          questions.map((q, i) => <Question question={q} key={i} />)
+          questions.map((q, i) => (
+            <Question question={q} key={i} onAnswer={answerHandler} />
+          ))
         ) : (
           <>Loading...</>
         )}
       </div>
       <form
         className={styles.ask}
-        onClick={(e) => {
+        onSubmit={(e) => {
           e.preventDefault();
+          newQuesHandler();
         }}
       >
         <h3>STILL HAVE ANY DOUBT?</h3>
@@ -131,11 +152,11 @@ const Faq = () => {
           value={newHeading}
           onChange={(e) => setNewHeading(e.target.value)}
         />
-        <textarea
+        {/* <textarea
           placeholder="Write a message"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-        />
+        /> */}
         <button type="submit">Post a Doubt</button>
       </form>
     </div>
