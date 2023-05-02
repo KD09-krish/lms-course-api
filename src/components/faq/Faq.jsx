@@ -5,8 +5,9 @@ import Question from "./Question";
 import { UserContext } from "../../context/UserContext";
 import socket, { connect } from "../../utils/socket";
 import axios from "axios";
+import { getFaq } from "../../utils/requests";
 
-const Faq = () => {
+const Faq = ({ lecture, course }) => {
   const { currentUser } = useContext(UserContext);
   const [session, setSession] = useState();
 
@@ -16,78 +17,32 @@ const Faq = () => {
   // const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
-    setQuestions([
-      {
-        question:
-          "1. Lorem ipsum dolor sit amet, consectetur adipiscing el. Lorem ipsum dolor sit amet, consectetur adipiscing el.",
-        answers: [
-          {
-            user: "John",
-            time: "15/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-          {
-            user: "Doe",
-            time: "13/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-        ],
-      },
-      {
-        question:
-          "1. Lorem ipsum dolor sit amet, consectetur adipiscing el. Lorem ipsum dolor sit amet, consectetur adipiscing el.",
-        answers: [
-          {
-            user: "John",
-            time: "15/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-          {
-            user: "Doe",
-            time: "13/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-        ],
-      },
-      {
-        question:
-          "1. Lorem ipsum dolor sit amet, consectetur adipiscing el. Lorem ipsum dolor sit amet, consectetur adipiscing el.",
-        answers: [
-          {
-            user: "John",
-            time: "15/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-          {
-            user: "Doe",
-            time: "13/04/23",
-            answer:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-          },
-        ],
-      },
-    ]);
-  }, []);
+    loadFaq(lecture, course);
+  }, [lecture, course]);
+
+  const loadFaq = (lecture, course) => {
+    getFaq("63bc26feda625a2ab6814d92", lecture.id).then((faq) => {
+      setQuestions(faq);
+      setNewHeading("");
+    });
+  };
 
   const answerHandler = (answer) => {
     console.log("Question Answered: " + answer);
   };
 
   const newQuesHandler = () => {
-    axios.post("http://localhost:8080/api/doubt", {
+    axios.post(process.env.REACT_APP_BACKEND_URL + "/doubt", {
       doubt: {
         course: "63bc26feda625a2ab6814d92",
         question: newHeading,
-        lecture: "63bc26fdda625a2ab6814d90",
+        lecture: lecture.id,
       },
       session: session,
     });
   };
+
+  // console.log(questions);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -104,8 +59,9 @@ const Faq = () => {
       console.log("User connected: " + user.username);
     });
 
-    socket.on("doubt", (doubt) => {
+    socket.on("new doubt", (doubt) => {
       console.log("New Doubt added: ", doubt);
+      loadFaq(lecture, course);
     });
 
     if (currentUser) {

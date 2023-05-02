@@ -4,9 +4,9 @@ import Faq from "../../components/faq/Faq";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 
-const Details = ({ lecture }) => {
+const Details = ({ lecture, course }) => {
   const options = [
-    { name: "Q&A", component: <Faq /> },
+    { name: "Q&A", component: <Faq lecture={lecture} course={course} /> },
     { name: "Resources", component: <Faq /> },
     { name: "Announcements", component: <Faq /> },
     { name: "Reviews", component: <Faq /> },

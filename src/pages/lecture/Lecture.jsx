@@ -3,26 +3,15 @@ import Navbar from "../../components/navbar/Navbar";
 import styles from "./lecture.module.css";
 import Details from "./Details";
 import { useState } from "react";
+import { getLectureList } from "../../utils/requests";
 
 const Lecture = () => {
+  const course = { id: 1 };
   const [lectures, setLectures] = useState();
   const [selectedLec, setSelectedLec] = useState();
 
   useEffect(() => {
-    setLectures([
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 1." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 2." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 3." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 4." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 5." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 6." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 7." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 8." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 9." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 10." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 11." },
-      { title: "Lorem ipsum dolor sit amet, consectetur adipiscing el 12." },
-    ]);
+    getLectureList().then((lectures) => setLectures(lectures));
   }, []);
 
   useEffect(() => {
@@ -41,7 +30,7 @@ const Lecture = () => {
             <h2>{selectedLec.title}</h2>
           </div>
           <div className={styles.video}></div>
-          <Details lecture={selectedLec} />
+          <Details lecture={selectedLec} course={course} />
         </div>
         <div className={styles.right}>
           <div className={styles.header}>Lorem ipsum</div>
