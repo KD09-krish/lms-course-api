@@ -90,8 +90,16 @@
   border-bottom: none;
 }
 
+.ansMain {
+  margin-bottom: 1rem;
+}
+
 .ansCont {
   margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  margin-left: 0.2rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.631);
+  color: rgba(0, 0, 0, 0.747);
 }
 
 .ansCont:last-child {
@@ -102,6 +110,11 @@
   display: flex;
   justify-content: space-between;
   font-weight: 700;
+}
+
+.ansHeader span + span {
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 /* .selection select::-ms-expand {
@@ -149,4 +162,8 @@ textarea:focus {
   font-size: 1.2rem;
   border-radius: 10px;
   background-color: green;
+}
+
+.answer textarea {
+  resize: vertical;
 }

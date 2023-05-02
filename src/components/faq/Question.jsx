@@ -43,7 +43,7 @@ const Question = ({ question, className, questionClassName, onAnswer }) => {
       </div>
       <div className={styles.answers} ref={ansRef}>
         {question.answers.map((ans, j) => (
-          <div key={j} className={styles.ansCont}>
+          <div key={j} className={styles.ansMain}>
             <div className={styles.ansHeader}>
               <span>{ans.user}</span>
               <span>{ans.time}</span>

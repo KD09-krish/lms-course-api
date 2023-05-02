@@ -13,7 +13,7 @@ const Faq = () => {
   const [questions, setQuestions] = useState();
 
   const [newHeading, setNewHeading] = useState("");
-  const [newMessage, setNewMessage] = useState("");
+  // const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     setQuestions([
@@ -115,7 +115,7 @@ const Faq = () => {
 
   // console.log(session);
 
-  return (
+  return questions ? (
     <div className={styles.container}>
       <h2>FAQ</h2>
       <div className={styles.selection}>
@@ -160,6 +160,8 @@ const Faq = () => {
         <button type="submit">Post a Doubt</button>
       </form>
     </div>
+  ) : (
+    "Loading..."
   );
 };
 
