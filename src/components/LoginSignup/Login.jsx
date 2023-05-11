@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../pages/login-signupmodal/loginSignup.css";
 import CloseIcon from "@mui/icons-material/Close";
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
   const [username, setUsername] = useState("");
@@ -20,7 +22,7 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
     <div className="wrapper login">
       <div className="container2">
         <div className="col-left">
-          <div className="login-text">
+          {/* <div className="login-text">
             <h2>Welcome!</h2>
             <p>
               Create your account.
@@ -30,7 +32,7 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
             <a href className="btn" onClick={() => setLoginClose(false)}>
               Sign Up
             </a>
-          </div>
+          </div> */}
         </div>
         <CloseIcon
           className="closeIcon"
@@ -39,7 +41,7 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
         <div className="col-right">
           <div className="login-form">
             <h2>Login</h2>
-            <form
+            {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleLogin();
@@ -73,7 +75,44 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
                 {" "}
                 <a href>Forgot password?</a>{" "}
               </p>
-            </form>
+            </form> */}
+            <GoogleLogin
+              logo_alignment="center"
+              width="100%"
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+                var config = {
+                  headers: { "Access-Control-Allow-Origin": "*" },
+                };
+                axios
+                  // .post(
+                  //   "https://lms-authentication11.onrender.com/API/login/google",
+                  //   {
+                  //     token: credentialResponse.credential,
+                  //   },
+                  //   config
+                  // )
+                  .post(
+                    "https://lms-authentication11.onrender.com/API/login/google",
+                    credentialResponse.credential,
+                    config
+                  )
+                  .then((res) => {
+                    console.log(res.data);
+                    window.localStorage.setItem("access_token", res.data.token);
+                    window.localStorage.setItem(
+                      "firstname",
+                      res.data.user.firstName
+                    );
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+              onError={() => {
+                console.log("Login failed");
+              }}
+            />
           </div>
         </div>
       </div>

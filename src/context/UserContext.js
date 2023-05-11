@@ -8,9 +8,11 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    const username = window.localStorage.getItem("username");
-    if (username) {
-      setCurrentUser({ username });
+    // const username = window.localStorage.getItem("username");
+    const token = window.localStorage.getItem("access_token");
+    const fname = window.localStorage.getItem("firstname");
+    if (token) {
+      setCurrentUser({ token, username: fname });
     }
   }, []);
 
