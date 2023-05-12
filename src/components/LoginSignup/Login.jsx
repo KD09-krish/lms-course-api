@@ -3,6 +3,13 @@ import "../../pages/login-signupmodal/loginSignup.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import {
+  browserName,
+  browserVersion,
+  deviceType,
+  osName,
+  osVersion,
+} from "react-device-detect";
 
 export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
   const [username, setUsername] = useState("");
@@ -84,30 +91,37 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
                 var config = {
                   headers: { "Access-Control-Allow-Origin": "*" },
                 };
-                axios
-                  // .post(
-                  //   "https://lms-authentication11.onrender.com/API/login/google",
-                  //   {
-                  //     token: credentialResponse.credential,
-                  //   },
-                  //   config
-                  // )
-                  .post(
-                    "https://lms-authentication11.onrender.com/API/login/google",
-                    credentialResponse.credential,
-                    config
-                  )
-                  .then((res) => {
-                    console.log(res.data);
-                    window.localStorage.setItem("access_token", res.data.token);
-                    window.localStorage.setItem(
-                      "firstname",
-                      res.data.user.firstName
-                    );
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
+                axios.get("https://api64.ipify.org").then((res) => {
+                  axios
+                    .post(
+                      "https://lms-authentication11.onrender.com/API/login/google",
+                      {
+                        token: credentialResponse.credential,
+                        loginInfo: {
+                          browser: `${browserName} ${browserVersion}`,
+                          os: `${osName} ${osVersion}`,
+                          deviceType: `${deviceType}`,
+                          // loginTime: Date.now().toLocaleString(),
+                          location: `${res.data}`,
+                        },
+                      },
+                      config
+                    )
+                    .then((res) => {
+                      console.log(res.data);
+                      window.localStorage.setItem(
+                        "access_token",
+                        res.data.token
+                      );
+                      window.localStorage.setItem(
+                        "firstname",
+                        res.data.user.firstName
+                      );
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+                });
               }}
               onError={() => {
                 console.log("Login failed");
