@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  padding: 1rem 2rem;
+}
+
+.main h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.intro {
+  margin: 1.5rem 0;
+  background-color: green;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.intro h2 {
+  font-size: 1.5rem;
+}
+
+.intro p {
+  color: rgba(255, 255, 255, 0.718);
+  width: 50%;
+}
+
+.sidebar {
+  padding: 1rem 2rem;
+}
+
+.courseList {
+  display: flex;
+  flex-flow: column;
+}
+
+.courses {
+  background-color: rgb(244, 244, 244);
+  padding: 1rem 0rem;
+  border-radius: 20px;
+}
+
+.courses h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  margin-left: 2rem;
+}
+
+.course {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  padding-left: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.148);
+}
+
+.course:last-child {
+  border: none;
+}
+
+.title h3 {
+  font-size: 1.1rem;
+}
+
+.title span {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.816);
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progressBar {
+  width: 100px;
+  background-color: rgb(202, 202, 202);
+  height: 5px;
+  border-radius: 100px;
+}
+
+.progressBar div {
+  background-color: green;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating svg {
+  fill: green;
+}
+
+.course button {
+  color: green;
+  border: 1px solid green;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background-color: transparent;
+  transition: 0.24s;
+}
+
+.course button:hover {
+  background-color: green;
+  color: white;
+}

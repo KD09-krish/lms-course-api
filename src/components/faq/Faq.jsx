@@ -65,7 +65,7 @@ const Faq = ({ lecture, course }) => {
     });
 
     if (currentUser) {
-      connect(currentUser.username);
+      connect(currentUser.email);
     }
   }, [currentUser]);
 
@@ -108,11 +108,6 @@ const Faq = ({ lecture, course }) => {
           value={newHeading}
           onChange={(e) => setNewHeading(e.target.value)}
         />
-        {/* <textarea
-          placeholder="Write a message"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        /> */}
         <button type="submit">Post a Doubt</button>
       </form>
     </div>

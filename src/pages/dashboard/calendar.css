@@ -1,0 +1,48 @@
+.react-calendar {
+  border-radius: 20px;
+  border: 0;
+  background-color: rgb(238, 255, 236);
+  padding: 1rem 1.7rem;
+}
+
+.react-calendar__tile {
+  border-radius: 20px;
+}
+
+.react-calendar__navigation {
+  gap: 0.2rem;
+}
+
+.react-calendar__navigation button {
+  border-radius: 20px;
+}
+
+.react-calendar__navigation button:nth-child(3) {
+  background-color: rgba(0, 0, 0, 0.063);
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: rgba(0, 0, 0, 0.063);
+}
+
+.react-calendar__month-view__days {
+  row-gap: 0.2rem;
+  column-gap: 0.5rem;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: rgba(0, 0, 0, 0.063);
+}
+
+.react-calendar__tile--now {
+  background-color: green;
+  color: white;
+  border-radius: 20px;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: rgba(0, 128, 0, 0.648);
+}

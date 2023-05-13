@@ -5,10 +5,11 @@
 .left {
   flex: 1;
   /* background-color: green; */
+  padding-left: 1rem;
 }
 
 .left .header {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
   padding: 1.2rem 1rem;
 }
 
@@ -21,6 +22,7 @@
   background-color: black;
   aspect-ratio: 16 / 9;
   width: 100%;
+  border-radius: 15px;
 }
 
 .tabs {
@@ -41,19 +43,30 @@
   color: white;
 }
 
-.right {
-  border-left: 1px solid rgb(184, 184, 184);
+.rightCont {
   width: 30%;
+  padding: 0 1rem;
+}
+
+.right {
+  background-color: rgb(232, 232, 232);
+  border-radius: 15px;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .header {
   width: 100%;
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
+  border-radius: 15px 15px 0 0;
   padding: 1.2rem 1rem;
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .lectureList {
+  border-radius: 15px;
+  background-color: rgb(245, 245, 245);
   padding: 1rem 1rem;
 }
 

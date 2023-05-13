@@ -42,21 +42,22 @@ const Question = ({ question, className, questionClassName, onAnswer }) => {
         </svg>
       </div>
       <div className={styles.answers} ref={ansRef}>
-        {question.answers.map((ans, j) => (
-          <div key={j} className={styles.ansMain}>
-            <div className={styles.ansHeader}>
-              <span>{ans.user}</span>
-              <span>{ans.time}</span>
+        {question.answers &&
+          question.answers.map((ans, j) => (
+            <div key={j} className={styles.ansMain}>
+              <div className={styles.ansHeader}>
+                <span>{ans.user}</span>
+                <span>{ans.time}</span>
+              </div>
+              <div className={styles.ansCont}>{ans.answer}</div>
             </div>
-            <div className={styles.ansCont}>{ans.answer}</div>
-          </div>
-        ))}
+          ))}
         <div className={styles.answer}>
           <textarea
             type="text"
             placeholder="Your Answer ..."
             value={answer}
-            onClick={(e) => setAnswer(e.target.value)}
+            onChange={(e) => setAnswer(e.target.value)}
           />
           <button onClick={() => onAnswer(answer)}>Answer</button>
         </div>

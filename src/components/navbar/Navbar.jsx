@@ -25,7 +25,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="container">
           <Link to="/">
-            <div className="leftName1">DevHustle</div>
+            <div className="leftName1">Mikado Solutions</div>
           </Link>
           <div className="menu-icon" onClick={handleShowNavbar}>
             <MenuIcon />
@@ -34,21 +34,13 @@ const Navbar = () => {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             <ul>
               <li>
-                <Link to="/products">Products</Link>
+                <Link to="/">Courses</Link>
               </li>
-              <li>FAQ</li>
               {currentUser ? (
                 <ProfileDropdown />
               ) : (
-                <li onClick={() => setIsModalOpen(true)}>Login</li>
-              )}
-              {currentUser ? (
-                ""
-              ) : (
-                <li>
-                  <a href="https://github.com/login/oauth/authorize?client_id=Iv1.aff67714bc9e4d05">
-                    <button className="button1">For Developers</button>
-                  </a>
+                <li onClick={() => setIsModalOpen(true)}>
+                  <button className="button1">Login</button>
                 </li>
               )}
             </ul>

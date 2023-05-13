@@ -32,22 +32,24 @@ const Lecture = () => {
           <div className={styles.video}></div>
           <Details lecture={selectedLec} course={course} />
         </div>
-        <div className={styles.right}>
-          <div className={styles.header}>Lorem ipsum</div>
-          <div className={styles.lectureList}>
-            {lectures.map((lecture, i) => (
-              <div
-                key={i}
-                className={`${styles.lectureItem} ${
-                  selectedLec === lecture ? styles.selected : ""
-                }`}
-                onClick={() => {
-                  setSelectedLec(lecture);
-                }}
-              >
-                {lecture.title}
-              </div>
-            ))}
+        <div className={styles.rightCont}>
+          <div className={styles.right}>
+            <div className={styles.header}>Lorem ipsum</div>
+            <div className={styles.lectureList}>
+              {lectures.map((lecture, i) => (
+                <div
+                  key={i}
+                  className={`${styles.lectureItem} ${
+                    selectedLec === lecture ? styles.selected : ""
+                  }`}
+                  onClick={() => {
+                    setSelectedLec(lecture);
+                  }}
+                >
+                  {lecture.title}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

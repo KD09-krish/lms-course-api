@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../pages/login-signupmodal/loginSignup.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { GoogleLogin } from "@react-oauth/google";
@@ -10,10 +10,12 @@ import {
   osName,
   osVersion,
 } from "react-device-detect";
+import { UserContext } from "../../context/UserContext";
 
 export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { refresh } = useContext(UserContext);
   const handleLogin = () => {
     console.log("In handleLogin");
 
@@ -47,7 +49,8 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
         />
         <div className="col-right">
           <div className="login-form">
-            <h2>Login</h2>
+            <h2>Mikado Solutions</h2>
+            <h3>Login/Register</h3>
             {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -85,7 +88,8 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
             </form> */}
             <GoogleLogin
               logo_alignment="center"
-              width="100%"
+              shape="circle"
+              containerProps={{ style: { width: "230px", margin: "auto" } }}
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
                 var config = {
@@ -117,6 +121,13 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
                         "firstname",
                         res.data.user.firstName
                       );
+                      window.localStorage.setItem(
+                        "profile_pic",
+                        res.data.user.profilePictureLink
+                      );
+                      window.localStorage.setItem("email", res.data.user.email);
+                      refresh();
+                      setIsModalOpen(false);
                     })
                     .catch((err) => {
                       console.log(err);

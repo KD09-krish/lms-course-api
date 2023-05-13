@@ -5,6 +5,7 @@ import Footer from "../src/components/footer/Footer";
 import Lecture from "./pages/lecture/Lecture";
 import { UserProvider } from "./context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Routes>
               <Route path="/">
                 <Route path="" element={<Lecture />} />
+                <Route path="dashboard" element={<Dashboard />} />
               </Route>
             </Routes>
             <Footer />
