@@ -98,7 +98,7 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
                 axios.get("https://api64.ipify.org").then((res) => {
                   axios
                     .post(
-                      "https://lms-authentication11.onrender.com/API/login/google",
+                      process.env.REACT_APP_BACKEND_URL + "/API/login/google",
                       {
                         token: credentialResponse.credential,
                         loginInfo: {

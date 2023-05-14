@@ -32,7 +32,7 @@ const Faq = ({ lecture, course }) => {
   };
 
   const newQuesHandler = () => {
-    axios.post(process.env.REACT_APP_BACKEND_URL + "/doubt", {
+    axios.post(process.env.REACT_APP_SOCKET_BACKEND + "/doubt", {
       doubt: {
         course: "63bc26feda625a2ab6814d92",
         question: newHeading,

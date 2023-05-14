@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const getLectureList = async () => {
-  const res = await axios.get(process.env.REACT_APP_BACKEND_URL + "/lecture");
+  const res = await axios.get(
+    process.env.REACT_APP_SOCKET_BACKEND + "/lecture"
+  );
   return res.data.data.map((lecture) => ({
     id: lecture._id,
     title: lecture.lectureTitle,
@@ -63,7 +65,7 @@ export const getFaq = async (
   lecture_id = "63bc26fdda625a2ab6814d90"
 ) => {
   const res = await axios.get(
-    process.env.REACT_APP_BACKEND_URL +
+    process.env.REACT_APP_SOCKET_BACKEND +
       `/doubt?course=${course_id}&lecture=${lecture_id}`
   );
 
