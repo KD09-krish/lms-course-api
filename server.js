@@ -8,6 +8,7 @@ const Doubt = require("./schemas/Doubt");
 const SocketDoubt = require("./schemas/SocketDoubt");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+require("dotenv").config();
 // const Lecture = require("./schemas/Lecture");
 
 // var corsOptions = {
@@ -22,8 +23,7 @@ var corsOptions = {
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
-const uri =
-  "mongodb+srv://aashish:Gk3yc90TAhbPsm0H@cluster0.zr7ivx7.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URL;
 
 mongoose.connect(uri, { useNewUrlParser: true }).then(() => {
   console.log("Mongo DB connected");
