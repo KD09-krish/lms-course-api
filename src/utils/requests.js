@@ -1,11 +1,16 @@
 import axios from "axios";
 
-export const getLectureList = async () => {
+export const getLectureList = async (slug) => {
+  const token = window.localStorage("access_token");
   const res = await axios.get(
-    process.env.REACT_APP_SOCKET_BACKEND + "/lecture"
+    process.env.REACT_APP_BACKEND2_URL +
+      "/API/course/" +
+      slug +
+      "?token=" +
+      token
   );
   return res.data.data.map((lecture) => ({
-    id: lecture._id,
+    id: lecture.slug,
     title: lecture.lectureTitle,
   }));
   // return [

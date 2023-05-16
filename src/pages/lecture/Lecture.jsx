@@ -4,14 +4,17 @@ import styles from "./lecture.module.css";
 import Details from "./Details";
 import { useState } from "react";
 import { getLectureList } from "../../utils/requests";
+import { useParams } from "react-router";
 
 const Lecture = () => {
+  const { id } = useParams();
   const course = { id: 1 };
   const [lectures, setLectures] = useState();
   const [selectedLec, setSelectedLec] = useState();
 
   useEffect(() => {
-    getLectureList().then((lectures) => setLectures(lectures));
+    console.log(id);
+    getLectureList(id).then((lectures) => setLectures(lectures));
   }, []);
 
   useEffect(() => {

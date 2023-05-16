@@ -15,18 +15,21 @@ const Dashboard = () => {
       author: "John Doe",
       progress: 0.25,
       rating: 4.3,
+      id: 1,
     },
     {
       title: "Course 2",
       author: "John Doe",
       progress: 0.25,
       rating: 4.3,
+      id: 2,
     },
     {
       title: "Course 3",
       author: "John Doe",
       progress: 0.25,
       rating: 4.3,
+      id: 3,
     },
   ];
   const navigate = useNavigate();
@@ -34,7 +37,7 @@ const Dashboard = () => {
   useEffect(() => {
     const access_token = window.localStorage.getItem("access_token");
     if (!access_token) navigate("/");
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
@@ -74,7 +77,13 @@ const Dashboard = () => {
                     </svg>
                     {course.rating}
                   </div>
-                  <button>View Course</button>
+                  <button
+                    onClick={() => {
+                      navigate("/course/" + course.id);
+                    }}
+                  >
+                    View Course
+                  </button>
                 </div>
               ))}
             </div>
