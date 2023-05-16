@@ -1,14 +1,47 @@
 .user-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100%;
-    position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  user-select: none;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 120%;
+  left: -20%;
+  display: flex;
+  flex-flow: column;
+  background-color: rgb(217, 255, 211);
+  width: 120%;
+  padding: 1rem 0;
+  border-radius: 20px;
+  box-shadow: 1px 2px 34px rgba(0, 0, 0, 0.23);
+}
+
+.nav-dropdown.hidden {
+  display: none;
+}
+
+.nav-dropdown button {
+  font-size: 16px;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.147);
+}
+
+.nav-dropdown button:first-child {
+  padding-top: 0;
+}
+
+.nav-dropdown button:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .username {
-    font-size: 1em;
-    padding-right: 1em;
-    text-align: center;
-    height: 100%;
+  font-size: 1em;
+  padding-right: 1em;
+  text-align: center;
+  height: 100%;
 }

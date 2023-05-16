@@ -16,6 +16,7 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { refresh } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const handleLogin = () => {
     console.log("In handleLogin");
 
@@ -86,58 +87,67 @@ export default function Login({ setLoginClose, setIsModalOpen, setUser }) {
                 <a href>Forgot password?</a>{" "}
               </p>
             </form> */}
-            <GoogleLogin
-              logo_alignment="center"
-              shape="circle"
-              containerProps={{ style: { width: "230px", margin: "auto" } }}
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-                var config = {
-                  headers: { "Access-Control-Allow-Origin": "*" },
-                };
-                axios.get("https://api64.ipify.org").then((res) => {
-                  axios
-                    .post(
-                      process.env.REACT_APP_BACKEND_URL + "/API/login/google",
-                      {
-                        token: credentialResponse.credential,
-                        loginInfo: {
-                          browser: `${browserName} ${browserVersion}`,
-                          os: `${osName} ${osVersion}`,
-                          deviceType: `${deviceType}`,
-                          // loginTime: Date.now().toLocaleString(),
-                          location: `${res.data}`,
+            {loading ? (
+              <>Loading ...</>
+            ) : (
+              <GoogleLogin
+                logo_alignment="center"
+                shape="circle"
+                containerProps={{ style: { width: "230px", margin: "auto" } }}
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  var config = {
+                    headers: { "Access-Control-Allow-Origin": "*" },
+                  };
+                  setLoading(true);
+                  axios.get("https://api64.ipify.org").then((res) => {
+                    axios
+                      .post(
+                        process.env.REACT_APP_BACKEND_URL + "/API/login/google",
+                        {
+                          token: credentialResponse.credential,
+                          loginInfo: {
+                            browser: `${browserName} ${browserVersion}`,
+                            os: `${osName} ${osVersion}`,
+                            deviceType: `${deviceType}`,
+                            // loginTime: Date.now().toLocaleString(),
+                            location: `${res.data}`,
+                          },
                         },
-                      },
-                      config
-                    )
-                    .then((res) => {
-                      console.log(res.data);
-                      window.localStorage.setItem(
-                        "access_token",
-                        res.data.token
-                      );
-                      window.localStorage.setItem(
-                        "firstname",
-                        res.data.user.firstName
-                      );
-                      window.localStorage.setItem(
-                        "profile_pic",
-                        res.data.user.profilePictureLink
-                      );
-                      window.localStorage.setItem("email", res.data.user.email);
-                      refresh();
-                      setIsModalOpen(false);
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                    });
-                });
-              }}
-              onError={() => {
-                console.log("Login failed");
-              }}
-            />
+                        config
+                      )
+                      .then((res) => {
+                        console.log(res.data);
+                        window.localStorage.setItem(
+                          "access_token",
+                          res.data.token
+                        );
+                        window.localStorage.setItem(
+                          "firstname",
+                          res.data.user.firstName
+                        );
+                        window.localStorage.setItem(
+                          "profile_pic",
+                          res.data.user.profilePictureLink
+                        );
+                        window.localStorage.setItem(
+                          "email",
+                          res.data.user.email
+                        );
+                        refresh();
+                        setIsModalOpen(false);
+                        setLoading(false);
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  });
+                }}
+                onError={() => {
+                  console.log("Login failed");
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

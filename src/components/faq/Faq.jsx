@@ -56,7 +56,7 @@ const Faq = ({ lecture, course }) => {
     });
 
     socket.on("user_connected", (user) => {
-      console.log("User connected: " + user.username);
+      console.log("User connected: " + user.email);
     });
 
     socket.on("new doubt", (doubt) => {
@@ -65,6 +65,7 @@ const Faq = ({ lecture, course }) => {
     });
 
     if (currentUser) {
+      console.log(currentUser.email);
       connect(currentUser.email);
     }
   }, [currentUser]);

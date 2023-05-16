@@ -12,6 +12,15 @@ export const UserProvider = ({ children }) => {
     setTemp((old) => !old);
   };
 
+  const logout = () => {
+    window.localStorage.removeItem("access_token");
+    window.localStorage.removeItem("firstname");
+    window.localStorage.removeItem("profile_pic");
+    window.localStorage.removeItem("email");
+    setCurrentUser();
+    refresh();
+  };
+
   useEffect(() => {
     // const username = window.localStorage.getItem("username");
     const token = window.localStorage.getItem("access_token");
@@ -24,7 +33,9 @@ export const UserProvider = ({ children }) => {
   }, [temp]);
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, refresh }}>
+    <UserContext.Provider
+      value={{ currentUser, setCurrentUser, refresh, logout }}
+    >
       {children}
     </UserContext.Provider>
   );
